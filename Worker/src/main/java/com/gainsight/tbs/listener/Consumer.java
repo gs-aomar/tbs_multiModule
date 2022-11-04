@@ -1,9 +1,7 @@
-package com.gainsight.tbs.contoller;
+package com.gainsight.tbs.listener;
 
 import com.gainsight.tbs.DTO.TicketDTO;
-import com.gainsight.tbs.POJO.Type;
 import com.gainsight.tbs.Services.ServiceLayer;
-import com.gainsight.tbs.POJO.ticket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
