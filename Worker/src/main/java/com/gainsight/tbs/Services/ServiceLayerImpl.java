@@ -42,7 +42,7 @@ public class ServiceLayerImpl implements ServiceLayer{
     }
 
     @Override
-    public TicketDTO checkValidityOfTicket(TicketDTO ticketDTO)
+    public TicketDTO checkValidityOfTicketAndPut(TicketDTO ticketDTO)
     {
 
         ticket checkTicket = repo.findByTicketNo(ticketDTO.getTicketNo());
@@ -56,15 +56,15 @@ public class ServiceLayerImpl implements ServiceLayer{
             {
                 if (ticketDTO.getStatus() == Status.INPROGRESS)
                 {
-                    logger.info("Ticket is already Inprogress please wait...");
+                    logger.info("Queue-->{},Ticket No.-->{},Msg-->Ticket is already Inprogress please wait...",checkTicket.getType(),checkTicket.getTicketNo());
                 }
                 else if(ticketDTO.getStatus() == Status.BOOKED)
                 {
-                    logger.info("Ticket is Booked successfully.");
+                    logger.info("Queue-->{},Ticket No.-->{},Msg-->Ticket is Booked successfully.",checkTicket.getType(),checkTicket.getTicketNo());
                 }
                 else
                 {
-                    logger.info("Sorry Ticket is Failed to book");
+                    logger.info("Queue-->{},Ticket No.-->{},Msg-->Sorry Ticket is Failed to book",checkTicket.getType(),checkTicket.getTicketNo());
                 }
                 putTicket(ticketDTO);
             }
@@ -72,31 +72,31 @@ public class ServiceLayerImpl implements ServiceLayer{
             {
                 if (ticketDTO.getStatus() == Status.INPROGRESS)
                 {
-                    logger.info("Sorry Ticket is already Booked.");
+                    logger.info("Ticket No.-->{},Msg-->Sorry Ticket is already Booked.",checkTicket.getTicketNo());
                 }
                 else if(ticketDTO.getStatus() == Status.BOOKED)
                 {
-                    logger.info("Ticket is already Booked.");
+                    logger.info("Ticket No.-->{},Msg-->Ticket is already Booked.",checkTicket.getTicketNo());
                     putTicket(ticketDTO);
                 }
                 else
                 {
-                    logger.info("Ticket is already Booked.Can't Book again");
+                    logger.info("Ticket No.-->{},Msg-->Ticket is already Booked.Can't Book again",checkTicket.getTicketNo());
                 }
             }
             else
             {
                 if (ticketDTO.getStatus() == Status.INPROGRESS)
                 {
-                    logger.info("Sorry Ticket is Failed to book");
+                    logger.info("Ticket No.-->{},Msg-->Sorry Ticket is Failed to book",checkTicket.getTicketNo());
                 }
                 else if(ticketDTO.getStatus() == Status.BOOKED)
                 {
-                    logger.info("Sorry Ticket is Failed to book");
+                    logger.info("Ticket No.-->{},Msg-->Sorry Ticket is Failed to book",checkTicket.getTicketNo());
                 }
                 else
                 {
-                    logger.info("Ticket is already Failed to book");
+                    logger.info("Ticket No.-->{},Msg-->Ticket is already Failed to book",checkTicket.getTicketNo());
                     putTicket(ticketDTO);
                 }
             }

@@ -20,6 +20,7 @@ public class HomeController
 
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
+    
     @Autowired
     private ServiceLayer serviceLayer;
 
@@ -47,7 +48,7 @@ public class HomeController
         ticketDTO.setType(Type.student);
 //        serviceLayer.putTicket(ticketDTO);
         rabbitTemplate.convertAndSend(topicExchange.getName(),"test.student",ticketDTO);
-        logger.info("Successfully send msg to Student Queue.");
+        logger.info("Successfully send msg to Student Queue and Generic Queue.");
         return "Successfully send msg to Student Queue.";
     }
 
@@ -58,7 +59,7 @@ public class HomeController
 //        serviceLayer.putTicket(ticketDTO);
         rabbitTemplate.convertAndSend(topicExchange.getName(),"test.employee",ticketDTO);
         logger.info("Successfully send msg to Employee Queue.");
-        return "Successfully send msg to Employee Queue.";
+        return "Successfully send msg to Employee Queue and Generic Queue.";
     }
 
     @PostMapping("/bootcamper-omar.generic")

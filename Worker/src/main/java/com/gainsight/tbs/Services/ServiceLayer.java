@@ -9,7 +9,7 @@ public interface ServiceLayer
     public List<TicketDTO> fetchTicket();
     public TicketDTO putTicket(TicketDTO ticketDTO);
 
-    public TicketDTO checkValidityOfTicket(TicketDTO ticketDTO);
+    public TicketDTO checkValidityOfTicketAndPut(TicketDTO ticketDTO);
 
 
 }

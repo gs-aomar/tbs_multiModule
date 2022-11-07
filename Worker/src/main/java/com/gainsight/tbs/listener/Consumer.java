@@ -19,21 +19,21 @@ public class Consumer
     @RabbitListener(queues = "bootcamper-omar.student.queue")
     void msgReceiveFromStudentQueue(TicketDTO ticketDTO)
     {
-        logger.info("Message receive from student Queue -->{}",ticketDTO);
-        serviceLayer.checkValidityOfTicket(ticketDTO);
+        logger.info("[bootcamper-omar.student.queue] ,{}, {}]",ticketDTO.getType(),ticketDTO.getTicketNo());
+        serviceLayer.checkValidityOfTicketAndPut(ticketDTO);
     }
 
     @RabbitListener(queues = "bootcamper-omar.employee.queue")
     void msgReceiveFromEmployeeQueue(TicketDTO ticketDTO)
     {
-        logger.info("Message receive from employee Queue -->{}",ticketDTO);
-        serviceLayer.checkValidityOfTicket(ticketDTO);
+        logger.info("[bootcamper-omar.employee.queue] ,{}, {}]",ticketDTO.getType(),ticketDTO.getTicketNo());
+        serviceLayer.checkValidityOfTicketAndPut(ticketDTO);
     }
 
     @RabbitListener(queues = "bootcamper-omar.generic.queue")
     void msgReceiveFromGenericQueue(TicketDTO ticketDTO)
     {
-        logger.info("Message receive from generic Queue -->{}",ticketDTO);
-        serviceLayer.checkValidityOfTicket(ticketDTO);
+        logger.info("[bootcamper-omar.generic.queue] ,{}, {}]",ticketDTO.getType(),ticketDTO.getTicketNo());
+        serviceLayer.checkValidityOfTicketAndPut(ticketDTO);
     }
 }
